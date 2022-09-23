@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/order-detail")
+@CrossOrigin
 public class OrderDetailController {
     @Autowired
     private ImlOrderDetailService orderDetailService;
