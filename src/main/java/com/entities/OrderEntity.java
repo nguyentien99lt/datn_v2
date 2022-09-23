@@ -22,9 +22,11 @@ public class OrderEntity {
     private String orderAddress;
 
     @Column(name = "order_date")
+    @Temporal(TemporalType.DATE)
     private Date orderDate;
 
     @Column(name = "received_date")
+    @Temporal(TemporalType.DATE)
     private Date receivedDate;
 
     @Column(name = "phone")

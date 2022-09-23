@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cart-detail")
+@CrossOrigin
 public class CartDetailController {
     @Autowired
     private ImlCartDetailService cartDetailService;

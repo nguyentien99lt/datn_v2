@@ -2,7 +2,6 @@ package com.controllers;
 
 import com.client.request.FindByPageRequest;
 import com.client.response.FindByPageResponse;
-
 import com.entities.CategoryEntity;
 import com.services.iml.ImlCategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/category")
+@CrossOrigin
 public class CategoryController {
 
     @Autowired

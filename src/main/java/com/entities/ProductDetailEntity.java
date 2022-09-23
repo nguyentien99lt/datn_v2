@@ -5,8 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Date;
+
 
 @Data
 @NoArgsConstructor
@@ -14,7 +14,7 @@ import java.util.Date;
 @Entity
 @Table(name = "product_details")
 public class ProductDetailEntity {
-
+// TODO
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -45,6 +45,7 @@ public class ProductDetailEntity {
     private String image;
 
     @Column(name = "create_date")
+    @Temporal(TemporalType.DATE)
     private Date createDate;
 
     @Column(name = "description")

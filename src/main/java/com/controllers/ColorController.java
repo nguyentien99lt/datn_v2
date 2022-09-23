@@ -11,6 +11,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/color")
+@CrossOrigin
 public class ColorController {
     @Autowired
     private ImlColorService colorService;

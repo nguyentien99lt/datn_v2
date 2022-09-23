@@ -12,6 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/role")
+@CrossOrigin
 public class RoleController {
     @Autowired
     private ImlRoleService roleService;
