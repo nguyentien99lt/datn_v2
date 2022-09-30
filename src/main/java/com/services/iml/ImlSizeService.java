@@ -1,9 +1,10 @@
 package com.services.iml;
 
 import com.client.request.FindByPageRequest;
+import com.client.request.ChangePassWord;
 import com.client.response.FindByPageResponse;
 import com.entities.SizeEntity;
-import com.entities.SizeEntity;
+import com.entities.UserEntity;
 import com.repositories.ISizeRepository;
 import com.services.IService;
 import org.hibernate.service.spi.ServiceException;
@@ -37,6 +38,8 @@ public class ImlSizeService implements IService<SizeEntity> {
             return null;
         }
     }
+
+
 
     @Override
     public SizeEntity delete(Integer id) {

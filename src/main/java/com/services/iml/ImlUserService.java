@@ -45,6 +45,9 @@ public class ImlUserService implements IService<UserEntity> {
         }
     }
 
+
+
+
     @Override
     public UserEntity delete(Integer id) {
         UserEntity color = userRepository.findById(id).get();

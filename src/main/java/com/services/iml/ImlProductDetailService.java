@@ -46,6 +46,8 @@ public class ImlProductDetailService implements IService<ProductDetailEntity> {
         }
     }
 
+
+
     @Override
     public ProductDetailEntity delete(Integer id) {
         ProductDetailEntity color = productDetailRepository.findById(id).get();

@@ -17,6 +17,7 @@
 		<java.version>11</java.version>
 	</properties>
 	<dependencies>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -49,6 +50,13 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.batoo.jpa/jpql -->
+		<dependency>
+			<groupId>org.batoo.jpa</groupId>
+			<artifactId>jpql</artifactId>
+			<version>0.1.6</version>
+		</dependency>
+
 	</dependencies>
 
 	<build>
