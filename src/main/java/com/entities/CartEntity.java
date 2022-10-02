@@ -20,14 +20,13 @@ public class CartEntity {
     private Integer id;
 
     @Column(name = "create_date")
-    @Temporal(TemporalType.DATE)
     private Date createDate;
 
     @Column(name = "status")
     private Integer status;
 
-    @OneToOne()
-    @JoinColumn(name = "users_id", unique = true)
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "users_id", referencedColumnName = "id")
     private UserEntity user;
 
 }

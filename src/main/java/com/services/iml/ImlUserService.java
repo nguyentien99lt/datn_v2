@@ -2,6 +2,7 @@ package com.services.iml;
 
 import com.client.request.FindByPageRequest;
 import com.client.response.FindByPageResponse;
+import com.dto.UserDTO;
 import com.entities.UserEntity;
 import com.repositories.IUserRepository;
 import com.services.IService;
@@ -20,7 +21,27 @@ public class ImlUserService implements IService<UserEntity> {
 
     @Autowired
     private IUserRepository userRepository;
+    
+//    @Override
+//    public List<UserEntity> listAll(UserDTO req)
+//    {
+//    	return userRepository.find(req.getName(), req.getStatus(),req.getPhone());
+//    }
 
+    public FindByPageResponse<UserEntity> listAll(UserDTO dto,Integer pageNumber , Integer pageSize)
+    {
+    	Pageable pageable = PageRequest.of(pageNumber, pageSize);
+    	Page<UserEntity> page = userRepository.find(dto.getName(), dto.getStatus(), dto.getPhone(), pageable);
+    	List<UserEntity> list = page.getContent();    
+    	FindByPageResponse<UserEntity> reponse = new FindByPageResponse();
+    	 reponse.setPageResponse(list);
+         reponse.setPageSize(page.getSize());
+         reponse.setCurrentPage(page.getNumber());
+         reponse.setTotalPage(page.getTotalPages());
+         reponse.setTotalElement(page.getTotalElements());
+         return reponse;
+    }
+    
     @Override
     public UserEntity create(UserEntity userEntity) {
         return userRepository.save(userEntity);
@@ -98,4 +119,6 @@ public class ImlUserService implements IService<UserEntity> {
             return null;
         }
     }
+
+
 }

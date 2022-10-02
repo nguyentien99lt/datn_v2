@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/size")
-@CrossOrigin
 public class SizeController {
     @Autowired
     private ImlSizeService sizeService;
@@ -27,7 +26,7 @@ public class SizeController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/read-by-id/{id}")
     public Optional<SizeEntity> readById(@PathVariable Integer id) {
         return sizeService.readById(id);
     }

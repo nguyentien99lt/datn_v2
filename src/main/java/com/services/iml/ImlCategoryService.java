@@ -1,10 +1,10 @@
 package com.services.iml;
 
-import com.client.request.FindByPageRequest;
-import com.client.response.FindByPageResponse;
-import com.entities.CategoryEntity;
-import com.repositories.ICategoryRepository;
-import com.services.IService;
+
+
+import java.util.List;
+import java.util.Optional;
+
 import org.hibernate.service.spi.ServiceException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,15 +12,37 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import com.client.request.FindByPageRequest;
+import com.client.response.FindByPageResponse;
+import com.dto.CategoryDTO;
+import com.dto.OrderDTO;
+import com.dto.UserDTO;
+import com.entities.CategoryEntity;
+import com.entities.OrderEntity;
+import com.entities.UserEntity;
+import com.repositories.ICategoryRepository;
+import com.services.IService;
 
 @Service
 public class ImlCategoryService implements IService<CategoryEntity> {
     @Autowired
     private ICategoryRepository categoryRepository;
-
-
+    
+  
+    public FindByPageResponse<CategoryEntity> listAll(CategoryDTO dto,Integer pageNumber , Integer pageSize) 
+    {
+    	Pageable pageable = PageRequest.of(pageNumber, pageSize);
+    	Page<CategoryEntity>  page = categoryRepository.findByNameLikeAndStatus(dto.getName(),dto.getStatus(), pageable);
+    	List<CategoryEntity> list = page.getContent();
+    	FindByPageResponse<CategoryEntity> reponse = new FindByPageResponse();
+        reponse.setPageResponse(list);
+        reponse.setPageSize(page.getSize());
+        reponse.setCurrentPage(page.getNumber());
+        reponse.setTotalPage(page.getTotalPages());
+        reponse.setTotalElement(page.getTotalElements());
+        return reponse;
+   
+    }
 
     @Override
     public CategoryEntity create(CategoryEntity categoryEntity) {
@@ -92,6 +114,7 @@ public class ImlCategoryService implements IService<CategoryEntity> {
             return null;
         }
     }
+
 
 
 }

@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/color")
-@CrossOrigin
 public class ColorController {
     @Autowired
     private ImlColorService colorService;
@@ -27,7 +26,7 @@ public class ColorController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/read-by-id/{id}")
     public Optional<ColorEntity> readById(@PathVariable Integer id) {
         return colorService.readById(id);
     }

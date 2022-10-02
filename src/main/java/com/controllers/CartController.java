@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/cart")
-@CrossOrigin
 public class CartController {
 
     @Autowired
@@ -44,7 +43,7 @@ public class CartController {
         return cartService.update(cart);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public CartEntity delete(@PathVariable Integer id) {
         return cartService.delete(id);
     }

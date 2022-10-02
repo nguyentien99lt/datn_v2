@@ -2,16 +2,18 @@ package com.controllers;
 
 import com.client.request.FindByPageRequest;
 import com.client.response.FindByPageResponse;
+import com.dto.OrderDTO;
+import com.dto.OrderInterface;
 import com.entities.OrderEntity;
 import com.services.iml.ImlOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/order")
-@CrossOrigin
 public class OrderController {
     @Autowired
     private ImlOrderService orderService;
@@ -45,5 +47,12 @@ public class OrderController {
     @DeleteMapping("/{id}")
     public OrderEntity delete(@PathVariable Integer id) {
         return orderService.delete(id);
+    }
+    
+    @PostMapping("/search")
+    public FindByPageResponse<OrderInterface> viewUser(
+    		@RequestBody OrderDTO dto
+    		,Pageable  pageable) {
+    	return	orderService.listAll(dto, pageable);
     }
 }

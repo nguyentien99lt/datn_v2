@@ -11,7 +11,6 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/product")
-@CrossOrigin
 public class ProductController {
     @Autowired
     private ImlProductService productService;
@@ -42,7 +41,7 @@ public class ProductController {
         return productService.update(product);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/delete/{id}")
     public ProductEntity delete(@PathVariable Integer id) {
         return productService.delete(id);
     }

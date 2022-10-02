@@ -2,16 +2,15 @@ package com.controllers;
 
 import com.client.request.FindByPageRequest;
 import com.client.response.FindByPageResponse;
+import com.dto.UserDTO;
 import com.entities.UserEntity;
 import com.services.iml.ImlUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
 public class UserController {
 
     @Autowired
@@ -28,7 +27,7 @@ public class UserController {
 
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/read-by-id/{id}")
     public Optional<UserEntity> readById(@PathVariable Integer id) {
         return userService.readById(id);
     }
@@ -47,4 +46,12 @@ public class UserController {
     public UserEntity delete(@PathVariable Integer id) {
         return userService.delete(id);
     }
-}
+    
+    @PostMapping("/search")
+    public FindByPageResponse<UserEntity> viewUser(
+    		@RequestBody UserDTO dto, 
+    		@RequestParam (name = "pageNumber", defaultValue = "0") Integer pageNumber
+    		,@RequestParam (name = "pageSize", defaultValue = "2") Integer pageSize  ) {
+    	return	userService.listAll(dto, pageNumber, pageSize);
+    }
+  }
